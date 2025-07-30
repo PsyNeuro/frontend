@@ -7,6 +7,7 @@ import { LecturePage } from "./pages/LecturePage/LecturePage.tsx";
 import Home from "./pages/Home/Home.tsx";
 import Login from "./pages/Login/Login.tsx";
 import Register from "./pages/Register/Register.tsx";
+import Dashboard from "./pages/Dashboard/Dashboard.tsx";
 
 function App() {
   const [message, setMessage] = useState("");
@@ -50,6 +51,7 @@ function App() {
           <Route path="/pages/Home" element={<Home />} />
           <Route path="/pages/Login" element={<Login />} />
           <Route path="/pages/Register" element={<Register />} />
+          <Route path="/pages/Dashboard" element={<Dashboard />} />
         </Routes>
       </div>
     </Router>

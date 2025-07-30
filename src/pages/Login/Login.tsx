@@ -10,10 +10,12 @@ import {
 } from "@mui/material";
 import { LockOutlined } from "@mui/icons-material";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -40,19 +42,27 @@ const Login = () => {
       console.log(formData);
       const response = await axios.post(
         "http://localhost:5000/api/login",
-        formData
+        formData,
+        { withCredentials: true }
       );
       setMessage("Login successful!");
       console.log("User Signed in:", response.data);
 
       // Clear form after successful Login
       setFormData({ email: "", password: "" });
+
+      // Redirect to dashboard
+      navigate("/pages/Dashboard");
     } catch (error: any) {
       setMessage(error.response?.data?.error || "Login failed");
       console.error("Login error:", error);
     } finally {
       setIsLoading(false);
     }
+    // const return = await axios.get(
+    //   "http://localhost:3000/pages/home",
+    //   { withCredentials: true }
+    // )
   };
 
   return (

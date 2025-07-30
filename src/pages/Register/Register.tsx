@@ -14,10 +14,12 @@ import {
 } from "@mui/material";
 import { LockOutlined } from "@mui/icons-material";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
 const Register = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -60,6 +62,10 @@ const Register = () => {
 
       // Clear form after successful registration
       setFormData({ name: "", email: "", password: "", role: "" });
+
+      // Redirect to dashboard
+      console.log("Rerouting to dashboard...");
+      navigate("/pages/Dashboard");
     } catch (error: any) {
       setMessage(error.response?.data?.error || "Registration failed");
       console.error("Registration error:", error);
