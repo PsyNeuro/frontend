@@ -34,6 +34,8 @@ import {
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+import Navbar from "../../components/Navbar_client.tsx";
+
 const Dashboard = () => {
   const navigate = useNavigate(); //navigation
   const [user, setUser] = useState<any>(null); // state to store user data / user state management
@@ -146,6 +148,8 @@ const Dashboard = () => {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
+      {/* Custom Navbar */}
+      <Navbar />
       {/* Top Navigation */}
       <AppBar position="static" sx={{ bgcolor: "primary.main" }}>
         <Toolbar>

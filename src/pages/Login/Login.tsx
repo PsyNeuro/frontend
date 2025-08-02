@@ -59,10 +59,6 @@ const Login = () => {
     } finally {
       setIsLoading(false);
     }
-    // const return = await axios.get(
-    //   "http://localhost:3000/pages/home",
-    //   { withCredentials: true }
-    // )
   };
 
   return (
