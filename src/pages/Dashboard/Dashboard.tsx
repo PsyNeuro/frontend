@@ -33,7 +33,6 @@ import {
 } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
 import Navbar from "../../components/Navbar_client.tsx";
 
 const Dashboard = () => {
@@ -73,24 +72,19 @@ const Dashboard = () => {
     }
   };
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    // Call the logout API endpoint
+    const result = await axios.post(
+      "http://localhost:5000/api/logout",
+      {},
+      { withCredentials: true }
+    );
+
     localStorage.removeItem("token");
     localStorage.removeItem("user");
 
-    const userDataold = localStorage.getItem("user");
-    const usertokenold = localStorage.getItem("token");
-
-    if (!userDataold) {
-      console.log(userDataold, "User data removed...");
+    if (result.status === 200) {
       navigate("/pages/Login");
-    } else {
-      console.log(userDataold, "User data not removed...");
-    }
-    if (!usertokenold) {
-      console.log(usertokenold, "User token removed...");
-      navigate("/pages/Login");
-    } else {
-      console.log(usertokenold, "User token not removed...");
     }
   };
 
